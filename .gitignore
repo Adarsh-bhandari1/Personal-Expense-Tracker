@@ -1,0 +1,9 @@
+# Ignore .env file (for sensitive environment variables like database credentials)
+.env
+
+# Ignore the virtual environment folder
+.venv/
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
