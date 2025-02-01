@@ -3,11 +3,11 @@ import os
 from dotenv import load_dotenv
 # Loading enviroment variables from .env file 
 load_dotenv()
-db_name=os.getenv("name")
-db_user=os.getenv("user")
-db_password=os.getenv("password")
-db_host=os.getenv("host")
-db_port=os.getenv("port")
+db_name=os.getenv("name") # Your database name 
+db_user=os.getenv("user")  # Your user_name on pgadmin
+db_password=os.getenv("password") # your password 
+db_host=os.getenv("host") # Your host
+db_port=os.getenv("port") # Your port Number 
 # Function to connect with the database 
 def connect_to_database():
     try:
