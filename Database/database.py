@@ -17,8 +17,3 @@ def connect_to_database():
     except Exception as e:
         print("Connection failed ")
         return None
-# Test the connection
-if __name__ == "__main__":
-    conn = connect_to_database()
-    if conn:
-        conn.close()  # Close the connection when done
