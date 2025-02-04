@@ -17,3 +17,4 @@ def connect_to_database():
     except Exception as e:
         print("Connection failed ")
         return None
+connect_to_database()
