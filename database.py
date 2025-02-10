@@ -12,9 +12,9 @@ db_port=os.getenv("port") # Your port Number
 def connect_to_database():
     try:
         conn=pg.connect(dbname=db_name,user=db_user,password=db_password,host=db_host,port=db_port)
-        print("Connected to database successfully")
         return conn
     except Exception as e:
-        print("Connection failed ")
         return None
-connect_to_database()
+def close_database_connection(conn):
+    if conn:
+        conn.close()
