@@ -36,18 +36,14 @@ def register_window():
                 close_database_connection()
             else:
                 hash_pass=bcrypt.hashpw(password_get.encode('utf-8'),bcrypt.gensalt())
-                cur.execute("INSERT INTO TABLE (user_name , password_hash) VALUES (%s , %s )",(username_get,hash_pass))
+                cur.execute("INSERT INTO user_credentials (user_name , password_hash) VALUES (%s , %s )",(username_get,hash_pass))
                 conn.commit()
                 cur.close
                 messagebox.showinfo("Success","Registration successful")
-                close_database_connection()
+                
             
         except Exception as e:
             messagebox.showerror("Error","Cannot connect to database")
-            
-    
-
-        
     Button(reg_win,text='register',command=reg_function).grid(row=3,column=1,pady=3)
 
 
