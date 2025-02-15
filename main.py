@@ -30,7 +30,7 @@ def register_window():
         try:
             conn=connect_to_database()
             cur=conn.cursor()
-            cur.execute("SELECT * FROM user_credentials WHERE user_name = %s",(username_get))
+            cur.execute("SELECT * FROM user_credentials WHERE user_name = %s",(username_get,))
             if cur.fetchone():
                 messagebox.showerror("Error","User name already exists")
                 close_database_connection()
@@ -40,6 +40,8 @@ def register_window():
                 conn.commit()
                 cur.close
                 messagebox.showinfo("Success","Registration successful")
+                close_database_connection(conn)
+                reg_win.destroy()
                 
             
         except Exception as e:
