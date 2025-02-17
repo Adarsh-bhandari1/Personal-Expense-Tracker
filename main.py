@@ -60,7 +60,10 @@ def login_window():
     Label(login,text="password").grid(row=1,column=0,padx=10,pady=5)
     log_password=tk.Entry(login)
     log_password.grid(row=1,column=1,padx=10,pady=5)
-
+    def login_function():
+        get_username=log_username.get().strip()
+        
+    Button(login,text="Login",command=login_function).grid(row=3,column=1,pady=3)
 # MAIN WINDOW CODE 
 def main_window():
     root=tk.Tk()
