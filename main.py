@@ -48,6 +48,18 @@ def register_window():
             messagebox.showerror("Error","Cannot connect to database")
     Button(reg_win,text='register',command=reg_function).grid(row=3,column=1,pady=3)
 
+# LOFIN WINDOW CODE
+def login_window():
+    login=tk.Toplevel()
+    login.title("Login")
+    login.geometry('350x250')
+    global log_username,log_password
+    Label(login,text="Username").grid(row=0,column=0,padx=10,pady=5)
+    log_username=tk.Entry(login)
+    log_username.grid(row=0,column=1,padx=10,pady=5)
+    Label(login,text="password").grid(row=1,column=0,padx=10,pady=5)
+    log_password=tk.Entry(login)
+    log_password.grid(row=1,column=1,padx=10,pady=5)
 
 # MAIN WINDOW CODE 
 def main_window():
@@ -56,8 +68,8 @@ def main_window():
     root.geometry('400x300')
     root.resizable(width=500 ,height= 400)
 
-    """login_btn=Button(root,text='Login',command=login_window)
-    login_btn.pack()"""
+    login_btn=Button(root,text='Login',command=login_window)
+    login_btn.pack()
     
     Register_btn=Button(root, text='Resgister',command=register_window)
     Register_btn.pack()
