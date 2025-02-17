@@ -62,7 +62,11 @@ def login_window():
     log_password.grid(row=1,column=1,padx=10,pady=5)
     def login_function():
         get_username=log_username.get().strip()
-        
+        get_password=log_password.get().strip()
+        if not get_username or get_password :
+            messagebox.showerror("Error","All fields required")
+            return
+
     Button(login,text="Login",command=login_function).grid(row=3,column=1,pady=3)
 # MAIN WINDOW CODE 
 def main_window():
