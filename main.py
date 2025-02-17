@@ -49,7 +49,6 @@ def register_window():
     Button(reg_win,text='register',command=reg_function).grid(row=3,column=1,pady=3)
 
 
-
 # MAIN WINDOW CODE 
 def main_window():
     root=tk.Tk()
