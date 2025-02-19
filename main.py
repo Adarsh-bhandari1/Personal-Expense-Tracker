@@ -66,7 +66,7 @@ def login_window():
         if not get_username or not get_password :
             messagebox.showerror("Error","All fields required")
             return
-        """try:
+        try:
             conn=connect_to_database()
             cur=conn.cursor()
             #Fetch password hash from database 
@@ -84,7 +84,7 @@ def login_window():
 
         except Exception as e:
             print("Database Error : " , e)
-            messagebox.showerror("error" ,"Databse error ")""" 
+            messagebox.showerror("error" ,"Databse error ")
 
     Button(login,text="Login",command=login_function).grid(row=3,column=1,pady=3)
 # MAIN WINDOW CODE 
