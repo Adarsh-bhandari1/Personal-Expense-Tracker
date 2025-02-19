@@ -35,7 +35,7 @@ def register_window():
                 messagebox.showerror("Error","User name already exists")
                 close_database_connection()
             else:
-                hash_pass=bcrypt.hashpw(password_get.encode('utf-8'),bcrypt.gensalt())
+                hash_pass=bcrypt.hashpw(password_get.encode('utf-8'),bcrypt.gensalt()).decode('utf-8')
                 cur.execute("INSERT INTO user_credentials (user_name , password_hash) VALUES (%s , %s )",(username_get,hash_pass))
                 conn.commit()
                 cur.close
@@ -66,14 +66,25 @@ def login_window():
         if not get_username or not get_password :
             messagebox.showerror("Error","All fields required")
             return
-        try:
+        """try:
             conn=connect_to_database()
             cur=conn.cursor()
-            cur.execute("SELECT assword_hash FROM  WHERE user_name = %s  " , (get_username,))
+            #Fetch password hash from database 
+            cur.execute("SELECT password_hash FROM user_credentials WHERE user_name = %s  " , (get_username,))
             result=cur.fetchone()
+            if result:
+                store_hash=result[0] #result[0] will give the value whereas result will give the tuple not the value 
             
+                if bcrypt.checkpw(get_password.encode('utf-8'),store_hash.encode('utf-8')):
+                    messagebox.showinfo("Success","Login successful")
+                else:
+                    messagebox.showerror("Error","Invalid password , Please Re-try")
+            else:
+                messagebox.showerror("Error","User not found ")
+
         except Exception as e:
-            messagebox.showerror("error" ,"Databse error ") 
+            print("Database Error : " , e)
+            messagebox.showerror("error" ,"Databse error ")""" 
 
     Button(login,text="Login",command=login_function).grid(row=3,column=1,pady=3)
 # MAIN WINDOW CODE 
