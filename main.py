@@ -63,14 +63,15 @@ def login_window():
     def login_function():
         get_username=log_username.get().strip()
         get_password=log_password.get().strip()
-        hash_pass=bcrypt.hashpw(get_password.encode('utf-8'),bcrypt.gensalt())
-        if not get_username or get_password :
+        if not get_username or not get_password :
             messagebox.showerror("Error","All fields required")
             return
         try:
             conn=connect_to_database()
             cur=conn.cursor()
-            cur.execute("SELECT user_name , password_hash FROM user_credential WHERE user_name = %s AND password_hash = %s " , (get_username,get_password))
+            cur.execute("SELECT assword_hash FROM  WHERE user_name = %s  " , (get_username,))
+            result=cur.fetchone()
+            
         except Exception as e:
             messagebox.showerror("error" ,"Databse error ") 
 
