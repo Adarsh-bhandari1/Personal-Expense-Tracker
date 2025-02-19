@@ -7,6 +7,9 @@ from tkinter import *
 from tkinter import messagebox
 import threading
 
+# Dashboard CODE
+def dashboard(conn):
+    dash_bd=tk.Toplevel()
 # REGISTER WINDOW CODE 
 def register_window():
     reg_win=tk.Toplevel()
@@ -77,6 +80,7 @@ def login_window():
             
                 if bcrypt.checkpw(get_password.encode('utf-8'),store_hash.encode('utf-8')):
                     messagebox.showinfo("Success","Login successful")
+                    dashboard(conn)
                 else:
                     messagebox.showerror("Error","Invalid password , Please Re-try")
             else:
@@ -85,6 +89,7 @@ def login_window():
         except Exception as e:
             print("Database Error : " , e)
             messagebox.showerror("error" ,"Databse error ")
+            close_database_connection(conn)
 
     Button(login,text="Login",command=login_function).grid(row=3,column=1,pady=3)
 # MAIN WINDOW CODE 
