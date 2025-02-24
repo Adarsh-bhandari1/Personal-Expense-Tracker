@@ -36,12 +36,12 @@ def register_window():
             cur.execute("SELECT * FROM user_credentials WHERE user_name = %s",(username_get,))
             if cur.fetchone():
                 messagebox.showerror("Error","User name already exists")
-                close_database_connection()
+                close_database_connection(conn)
             else:
                 hash_pass=bcrypt.hashpw(password_get.encode('utf-8'),bcrypt.gensalt()).decode('utf-8')
                 cur.execute("INSERT INTO user_credentials (user_name , password_hash) VALUES (%s , %s )",(username_get,hash_pass))
                 conn.commit()
-                cur.close
+                cur.close()
                 messagebox.showinfo("Success","Registration successful")
                 close_database_connection(conn)
                 reg_win.destroy()
