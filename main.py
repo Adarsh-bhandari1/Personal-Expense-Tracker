@@ -8,9 +8,11 @@ from tkinter import messagebox
 import threading
 
 # Dashboard CODE
-def dashboard(conn,login):
-    login.title('Dashboard')
-
+def dashboard(conn,dash):
+    for widget in dash.winfo_children():
+        widget.destroy()
+    dash.title('Dashboard')
+    Label(dash , text='Personal Expense Tracker').grid(row=2 , column=2 , padx=5)
 # REGISTER WINDOW CODE 
 def register_window(reg_win):
     for widget in reg_win.winfo_children():
