@@ -8,11 +8,13 @@ from tkinter import messagebox
 import threading
 
 # Dashboard CODE
-def dashboard(conn):
-    dash_bd=tk.Toplevel()
+def dashboard(conn,login):
+    login.title('Dashboard')
+
 # REGISTER WINDOW CODE 
-def register_window():
-    reg_win=tk.Toplevel()
+def register_window(reg_win):
+    for widget in reg_win.winfo_children():
+        widget.destroy()
     reg_win.title('Register')
     reg_win.geometry('350x250')
     Label(reg_win , text='username').grid(row=0,column=0,padx=10,pady=5)
@@ -50,10 +52,12 @@ def register_window():
         except Exception as e:
             messagebox.showerror("Error","Cannot connect to database")
     Button(reg_win,text='register',command=reg_function).grid(row=3,column=1,pady=3)
+    Button(reg_win,text='Back to login ', command=lambda: login_window(reg_win)).grid(row=4, column=1, pady=3)
 
 # LOFIN WINDOW CODE
-def login_window():
-    login=tk.Toplevel()
+def login_window(login):
+    for widget in login.winfo_children():
+        widget.destroy()
     login.title("Login")
     login.geometry('350x250')
     global log_username,log_password
@@ -80,7 +84,7 @@ def login_window():
             
                 if bcrypt.checkpw(get_password.encode('utf-8'),store_hash.encode('utf-8')):
                     messagebox.showinfo("Success","Login successful")
-                    dashboard(conn)
+                    dashboard(conn,login)
                 else:
                     messagebox.showerror("Error","Invalid password , Please Re-try")
             else:
@@ -91,7 +95,8 @@ def login_window():
             messagebox.showerror("error" ,"Databse error ")
             close_database_connection(conn)
 
-    Button(login,text="Login",command=login_function).grid(row=3,column=1,pady=3)
+    Button(login,text="Login",command=login_function).grid(row=2,column=1,pady=3)
+    Button(login,text='Register' ,command=lambda:register_window(login)).grid(row=3 ,column=1 , pady=3 )
 # MAIN WINDOW CODE 
 def main_window():
     root=tk.Tk()
@@ -99,12 +104,7 @@ def main_window():
     root.geometry('400x300')
     root.resizable(width=500 ,height= 400)
 
-    login_btn=Button(root,text='Login',command=login_window)
-    login_btn.pack()
-    
-    Register_btn=Button(root, text='Resgister',command=register_window)
-    Register_btn.pack()
+    login_window(root)
 
     root.mainloop()
 main_window()
-
