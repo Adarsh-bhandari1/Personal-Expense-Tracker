@@ -12,7 +12,8 @@ def dashboard(conn,dash):
     for widget in dash.winfo_children():
         widget.destroy()
     dash.title('Dashboard')
-    Label(dash , text='Personal Expense Tracker').grid(row=2 , column=2 , padx=5)
+    dash.resizable(True , True)  #Allowing user to resizeable the window 
+    
 # REGISTER WINDOW CODE 
 def register_window(reg_win):
     for widget in reg_win.winfo_children():
@@ -104,7 +105,7 @@ def main_window():
     root=tk.Tk()
     root.title("Personal Expense tracker")
     root.geometry('400x300')
-    root.resizable(width=500 ,height= 400)
+    root.resizable(False,False) #Preventing user from resizing the window 
 
     login_window(root)
 
