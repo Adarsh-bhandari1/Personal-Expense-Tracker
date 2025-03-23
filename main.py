@@ -4,7 +4,7 @@ from database import connect_to_database
 from database import close_database_connection
 import bcrypt 
 from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox,ttk
 import threading
 
 # Dashboard CODE
@@ -13,14 +13,16 @@ def dashboard(conn,dash,get_username):
         widget.destroy()
     dash.title('Dashboard')
     dash.resizable(True , True)  #Allowing user to resizeable the window 
-    Label(dash, text=f"Welcome, {get_username}!", font=("Arial", 14, "bold")).grid(row=0, column=0, padx=10, pady=10)    
+    Label(dash, text=f"Welcome, {get_username}!", font=("Arial", 14, "bold")).grid(row=0, column=0, padx=10, pady=10) 
+    dash.grid_columnconfigure(0, weight=1)
+
 # REGISTER WINDOW CODE 
 def register_window(reg_win):
     for widget in reg_win.winfo_children():
         widget.destroy()
     reg_win.title('Register')
     reg_win.geometry('350x250')
-    Label(reg_win , text='username').grid(row=0,column=0,padx=10,pady=5)
+    Label(reg_win , text='Username').grid(row=0,column=0,padx=10,pady=5)
     global username,password
     username=tk.Entry(reg_win)
     username.grid(row=0,column=1,padx=10,pady=5)
