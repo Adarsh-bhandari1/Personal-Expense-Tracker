@@ -6,16 +6,6 @@ import bcrypt
 from tkinter import *
 from tkinter import messagebox,ttk
 import threading
-
-# Dashboard CODE
-def dashboard(conn,dash,get_username):
-    for widget in dash.winfo_children():
-        widget.destroy()
-    dash.title('Dashboard')
-    dash.resizable(True , True)  #Allowing user to resizeable the window 
-    Label(dash, text=f"Welcome, {get_username}!", font=("Arial", 14, "bold")).grid(row=0, column=0, padx=10, pady=10) 
-    dash.grid_columnconfigure(0, weight=1)
-
 # REGISTER WINDOW CODE 
 def register_window(reg_win):
     for widget in reg_win.winfo_children():
@@ -89,7 +79,8 @@ def login_window(login):
             
                 if bcrypt.checkpw(get_password.encode('utf-8'),store_hash.encode('utf-8')):
                     messagebox.showinfo("Success","Login successful")
-                    dashboard(conn,login,get_username)
+                    from dashboard import Dashboard
+                    Dashboard(conn,login,get_username)
                 else:
                     messagebox.showerror("Error","Invalid password , Please Re-try")
             else:
@@ -97,7 +88,7 @@ def login_window(login):
 
         except Exception as e:
             print("Database Error : " , e)
-            messagebox.showerror("error" ,"Databse error ")
+            messagebox.showerror("error" ,"Something went wrong !")
             close_database_connection(conn)
 
     Button(login,text="Login",command=login_function).grid(row=2,column=1,pady=3)
