@@ -70,7 +70,7 @@ def login_window(login):
     log_username=tk.Entry(login)
     log_username.grid(row=0,column=1,padx=10,pady=5)
     Label(login,text="password").grid(row=1,column=0,padx=10,pady=5)
-    log_password=tk.Entry(login)
+    log_password=tk.Entry(login,show='*')
     log_password.grid(row=1,column=1,padx=10,pady=5)
     def login_function():
         get_username=log_username.get().strip()
