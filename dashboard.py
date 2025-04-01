@@ -1,4 +1,3 @@
-# from database import connect_to_database,close_database_connection
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import *
