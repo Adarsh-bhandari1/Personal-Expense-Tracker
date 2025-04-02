@@ -17,7 +17,7 @@ class Dashboard:
         self.dash.geometry('400x300')
         self.dash.configure(bg='lightblue')
         self.dash.resizable(False , False)
-        Label(self.dash ,text=f"Welcome,{self.username} !",font=("Arial" , 14 , "bold")).grid(row=0,column=0,padx=10,pady=10)
+        Label(self.dash ,text=f"Welcome,{self.username} !",font=("Arial" , 14 , "bold"),bg='lightblue').grid(row=0,column=0,padx=10,pady=10)
         self.dash.grid_columnconfigure(0,weight=1)
       
         
